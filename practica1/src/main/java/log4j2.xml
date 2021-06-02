@@ -1,0 +1,52 @@
+<Configuration status="INFO">
+
+
+	<Properties>
+
+		<Property name="basePath">/home/mint/eclipse-workspace/PracticaTema8_1
+		</Property>
+
+	</Properties>
+
+	<Appenders>
+
+
+		<Console name="Console">
+
+			<PatternLayout
+				pattern="%d{dd-MM-yyyy HH:mm:ss} %-5level %c{20} %msg%n" />
+
+
+
+		</Console>
+
+		<RollingFile name="fileLogger"
+			fileName="${basePath}/app-info.log"
+			filePattern="${basePath}/app-info-%d{yyyy-MM-dd-hh-mm}.log">
+
+			<PatternLayout>
+
+				<pattern>[%-5level] %d{dd-MM-yyyy HH:mm:ss} [%t] %c{1} - %msg%n </pattern>
+			</PatternLayout>
+
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		<File name="File" fileName="${basePath}/salida.txt">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Root level="all">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="fileLogger" level="INFO" />
+			<AppenderRef ref="File" />
+
+		</Root>
+
+	</Loggers>
+
+
+</Configuration>
